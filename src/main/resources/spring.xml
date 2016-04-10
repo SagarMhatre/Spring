@@ -2,13 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-
-<bean id="connectorBeanName" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
-	<property name="url" value="http://localhost:8080/app/location"></property>
-</bean>
-
-<bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byType"/>
-
-<bean id="myHealthCheckerThread" class="in.mhatre.sagar.spring.core.HealthCheckerThread" />
-
+	
+	<bean id="connectorBeanName" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+	
+	<bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byType"/>
+	<!--  autowire="byType" requires that for each member variable type of the bean's class, there is only one bean defined -->
+	
+	<bean id="myHealthCheckerThread" class="in.mhatre.sagar.spring.core.HealthCheckerThread" />
+	
 </beans>

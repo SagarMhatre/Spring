@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="httpConnector" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+	
+	<bean id="connector" class="in.mhatre.sagar.spring.core.beans.HTTPConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+	<bean id="basicHttpServer" class="in.mhatre.sagar.spring.core.beans.Server">
+		<!-- Can be instantiated, but connector will be null -->
+		<property name="url" value="http://localhost:8080/httpServer"></property>
+	</bean>
+	<bean id="actualHttpServer" class="in.mhatre.sagar.spring.core.beans.Server"
+		parent="basicHttpServer" autowire="byName" />
+
+	<bean id="basicRestServer" class="in.mhatre.sagar.spring.core.beans.Server"
+		abstract="true">
+		<!-- Due to abstract="true", this bean cannot be instantiated. It can only be used as a template -->
+		<property name="connector" ref="httpConnector" />
+	</bean>
+	<bean id="actualRestServer1" class="in.mhatre.sagar.spring.core.beans.Server"
+		parent="basicRestServer">
+		<property name="url" value="http://localhost:8080/restServer"></property>
+	</bean>
+	<bean id="actualRestServer2" class="in.mhatre.sagar.spring.core.beans.Server"
+		parent="basicRestServer">
+		<property name="url" value="http://someotherhost:8080/restServer"></property>
+	</bean>
+
+	<bean id="httpServers" class="in.mhatre.sagar.spring.core.beans.ServersStore">
+		<property name="servers">
+			<list>
+				<ref bean="basicHttpServer" />
+				<ref bean="actualHttpServer" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="allServers" class="in.mhatre.sagar.spring.core.beans.ServersStore"
+		parent="httpServers">
+		<property name="servers">
+			<list merge="true">
+				<!-- Thanks to merge="true", the below beans will be appended to the 
+					list from the parent -->
+				<!-- <ref bean="basicRestServer"/> -->
+				<ref bean="actualRestServer1" />
+				<ref bean="actualRestServer2" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
