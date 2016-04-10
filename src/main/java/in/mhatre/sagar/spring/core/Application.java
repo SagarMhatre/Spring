@@ -36,7 +36,7 @@ public class Application {
 	public static void usingApplicationContext(){
 		applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 		// Connector connector  = (Connector) applicationContext.getBean("connector");
-		Connector connector  = applicationContext.getBean("connector", Connector.class);		
+		Connector connector  = applicationContext.getBean("connectorBeanName", Connector.class);		
 		// <bean id="connector" class=" "></bean>
 		// By changing the class name in the XML, we can return a different subtype
 		System.out.println(connector.toString());		
