@@ -9,14 +9,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
 import in.mhatre.sagar.spring.core.beans.Connector;
+import in.mhatre.sagar.spring.core.beans.HealthChecker;
 
 @SpringBootApplication
 public class Application {
+	
+	static ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
 		//SpringApplication.run(Application.class, args);
 		//usingSpringBeanFactory();
 		usingApplicationContext();
+		usingAutoWiringByName();
 	}
 	
 	@Deprecated
@@ -30,11 +34,16 @@ public class Application {
 	}
 	
 	public static void usingApplicationContext(){
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+		applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 		// Connector connector  = (Connector) applicationContext.getBean("connector");
 		Connector connector  = applicationContext.getBean("connector", Connector.class);		
 		// <bean id="connector" class=" "></bean>
 		// By changing the class name in the XML, we can return a different subtype
 		System.out.println(connector.toString());		
-	}	
+	}
+	
+	public static void usingAutoWiringByName(){
+		HealthChecker healthChecker= applicationContext.getBean("healthChecker", HealthChecker.class);
+		System.out.println(healthChecker.toString());	
+	}
 }

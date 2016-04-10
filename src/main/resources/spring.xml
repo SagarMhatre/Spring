@@ -7,4 +7,6 @@
 	<property name="url" value="http://localhost:8080/app/location"></property>
 </bean>
 
+<bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byName"/>
+
 </beans>
