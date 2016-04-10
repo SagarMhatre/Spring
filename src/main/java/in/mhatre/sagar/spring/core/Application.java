@@ -21,6 +21,7 @@ public class Application {
 		//usingSpringBeanFactory();
 		usingApplicationContext();
 		usingAutoWiringByName();
+		usingApplicationContextOutsideOfTheClassWhereItIsCreated();
 	}
 	
 	@Deprecated
@@ -45,5 +46,10 @@ public class Application {
 	public static void usingAutoWiringByName(){
 		HealthChecker healthChecker= applicationContext.getBean("healthChecker", HealthChecker.class);
 		System.out.println(healthChecker.toString());	
+	}
+	
+	public static void usingApplicationContextOutsideOfTheClassWhereItIsCreated(){
+		Thread thread = new Thread(applicationContext.getBean("healthCheckerThread", HealthCheckerThread.class));
+		thread.start();
 	}
 }

@@ -9,4 +9,6 @@
 
 <bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byType"/>
 
+<bean id="healthCheckerThread" class="in.mhatre.sagar.spring.core.HealthCheckerThread" />
+
 </beans>
