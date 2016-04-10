@@ -49,7 +49,7 @@ public class Application {
 	}
 	
 	public static void usingApplicationContextOutsideOfTheClassWhereItIsCreated(){
-		Thread thread = new Thread(applicationContext.getBean("healthCheckerThread", HealthCheckerThread.class));
+		Thread thread = new Thread(applicationContext.getBean("myHealthCheckerThread", HealthCheckerThread.class));
 		thread.start();
 	}
 }
