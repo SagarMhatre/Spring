@@ -3,6 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-<bean id="connector" class="in.mhatre.sagar.spring.core.beans.HTTPConnector"></bean>
+<bean id="connector" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
+	<property name="url" value="http://localhost:8080/app/location"></property>
+</bean>
 
 </beans>
