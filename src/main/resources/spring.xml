@@ -12,4 +12,12 @@
 	
 	<bean id="myHealthCheckerThread" class="in.mhatre.sagar.spring.core.HealthCheckerThread" />
 	
+	<bean id="myDBConnector" class="in.mhatre.sagar.spring.core.beans.MSSQLDBConnector">
+		<property name="connectionString" value="jdbc:mysql://localhost:3306/sakila?profileSQL=true"></property>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<!-- First it will attempt to autowire the DBConnector of myHealthCheckerThread 
+		by Type.  -->
+	
 </beans>

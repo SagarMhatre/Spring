@@ -3,6 +3,7 @@ package in.mhatre.sagar.spring.core.beans;
 public class HealthChecker {
 
 	private Connector connector;
+	private DBConnector dbConnector;
 
 	public Connector getConnector() {
 		return connector;
@@ -14,7 +15,17 @@ public class HealthChecker {
 
 	@Override
 	public String toString() {
-		return "HealthChecker [connector=" + connector + "]";
+		return "HealthChecker [connector=" + connector + ", dbConnector=" + dbConnector + "]";
 	}
+
+	public DBConnector getDbConnector() {
+		return dbConnector;
+	}
+
+	public void setDbConnector(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+	
+	
 
 }
