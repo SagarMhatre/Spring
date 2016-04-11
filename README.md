@@ -10,3 +10,4 @@
 * Used parent=<Bean Name> to inherit a template bean
 * Used abstract="true" to define template
 * Used <list merge="true"> to append to a list partially filled by the parent template bean
+* Declaring a bean of class org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor & annotating setters with @Required makes it mandatory to set the member variable even for template beans 

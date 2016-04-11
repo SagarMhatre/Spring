@@ -6,7 +6,7 @@
 	<bean id="httpConnector" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
 		<property name="url" value="http://localhost:8080/app/location"></property>
 	</bean>
-	
+
 	<bean id="connector" class="in.mhatre.sagar.spring.core.beans.HTTPConnector">
 		<property name="url" value="http://localhost:8080/app/location"></property>
 	</bean>
@@ -19,7 +19,8 @@
 
 	<bean id="basicRestServer" class="in.mhatre.sagar.spring.core.beans.Server"
 		abstract="true">
-		<!-- Due to abstract="true", this bean cannot be instantiated. It can only be used as a template -->
+		<!-- Due to abstract="true", this bean cannot be instantiated. It can only 
+			be used as a template -->
 		<property name="connector" ref="httpConnector" />
 	</bean>
 	<bean id="actualRestServer1" class="in.mhatre.sagar.spring.core.beans.Server"
@@ -52,5 +53,9 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
+	<!--  Annotate setter with @Required for member variables that should be mandatorily set EVEN FOR THE TEMPLATE -->
+	<!--  org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'basicHttpServer' defined in class path resource [servers-spring.xml]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanInitializationException: Property 'connector' is required for bean 'basicHttpServer' -->	
 
 </beans>
