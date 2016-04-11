@@ -1,6 +1,6 @@
 package in.mhatre.sagar.spring.core.beans;
 
-public class MySQLDBConnector {
+public class MySQLDBConnector implements DBConnector {
 
 	private String connectionString;
 

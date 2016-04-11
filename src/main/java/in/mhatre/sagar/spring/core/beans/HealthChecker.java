@@ -1,5 +1,7 @@
 package in.mhatre.sagar.spring.core.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class HealthChecker {
 
 	private Connector connector;
@@ -22,6 +24,7 @@ public class HealthChecker {
 		return dbConnector;
 	}
 
+	@Autowired
 	public void setDbConnector(DBConnector dbConnector) {
 		this.dbConnector = dbConnector;
 	}

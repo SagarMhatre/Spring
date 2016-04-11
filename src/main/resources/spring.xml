@@ -7,17 +7,33 @@
 		<property name="url" value="http://localhost:8080/app/location"></property>
 	</bean>
 	
-	<bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byType"/>
+	<bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker"/>
+	<!-- <bean id="healthChecker" class="in.mhatre.sagar.spring.core.beans.HealthChecker" autowire="byType"/>   -->
 	<!--  autowire="byType" requires that for each member variable type of the bean's class, there is only one bean defined -->
 	
 	<bean id="myHealthCheckerThread" class="in.mhatre.sagar.spring.core.HealthCheckerThread" />
 	
 	<bean id="myDBConnector" class="in.mhatre.sagar.spring.core.beans.MSSQLDBConnector">
+		<property name="connectionString" value="jdbc:sqlserver://localhost;user=MyUserName;password=*****"></property>
+	</bean>
+	
+	<bean id="dbConnector" class="in.mhatre.sagar.spring.core.beans.MySQLDBConnector">
 		<property name="connectionString" value="jdbc:mysql://localhost:3306/sakila?profileSQL=true"></property>
 	</bean>
 	
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-	<!-- First it will attempt to autowire the DBConnector of myHealthCheckerThread 
-		by Type.  -->
-	
+	<!--FOR member variables with setters annotated with @AutoWired, first it will attempt to autowire the DBConnector of myHealthCheckerThread 
+		by Type. If there are multiple beans of the type DBConnector, it will autowire 
+		by Name PROVIDED the bean has not been declared to be Autowired by Type-->		
+	<!-- If the bean has been declared to be Autowired by Type, we get error 
+		: org.springframework.beans.factory.UnsatisfiedDependencyException: Error 
+		creating bean with name 'healthChecker' defined in class path resource [spring.xml]: 
+		Unsatisfied dependency expressed through bean property 'dbConnector': No 
+		qualifying bean of type [in.mhatre.sagar.spring.core.beans.DBConnector] is 
+		defined: expected single matching bean but found 2: myDBConnector,dbConnector; 
+		nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: 
+		No qualifying bean of type [in.mhatre.sagar.spring.core.beans.DBConnector] 
+		is defined: expected single matching bean but found 2: myDBConnector,dbConnector -->
+	<!-- Note that the connector stays null since it was not Annotated with 
+		@Autowired & the bean was not defined with autowire="byType" -->
 </beans>
