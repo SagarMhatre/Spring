@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	
+	<bean id="restConnector" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+	
+	<bean id="connector" class="in.mhatre.sagar.spring.core.beans.HTTPConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+	
+	
+	<bean id="mssqlConnector" class="in.mhatre.sagar.spring.core.beans.MSSQLDBConnector">
+		<property name="connectionString" value="jdbc:sqlserver://localhost;user=MyUserName;password=*****"></property>
+	</bean>
+	
+	<bean id="dbConnector" class="in.mhatre.sagar.spring.core.beans.MySQLDBConnector">
+		<property name="connectionString" value="jdbc:mysql://localhost:3306/sakila?profileSQL=true"></property>
+	</bean>
+
+	<bean id="resourcedHealthChecker" class="in.mhatre.sagar.spring.core.beans.ResourcedHealthChecker"/>
+	
+		
+</beans>
