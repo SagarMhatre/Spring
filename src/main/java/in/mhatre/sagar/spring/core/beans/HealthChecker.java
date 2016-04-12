@@ -1,6 +1,7 @@
 package in.mhatre.sagar.spring.core.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class HealthChecker {
 
@@ -25,6 +26,7 @@ public class HealthChecker {
 	}
 
 	@Autowired
+	@Qualifier("useThisQualifiedConnector")
 	public void setDbConnector(DBConnector dbConnector) {
 		this.dbConnector = dbConnector;
 	}
