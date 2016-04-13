@@ -1,7 +1,11 @@
 package in.mhatre.sagar.spring.core.beans;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
-import org.springframework.context.ApplicationContext;
+//import org.springframework.context.ApplicationContext;
+//AbstractApplicationContext provides the registerShutdownHook() method . Else, the @PreDestroy method is not being called 
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -34,9 +38,21 @@ public class ComponentHealthChecker {
 	}
 	
 	public static void main(String[] args) {
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("component.xml");
+		AbstractApplicationContext appContext = new ClassPathXmlApplicationContext("component.xml");
 		ComponentHealthChecker componentHealthChecker = appContext.getBean("componentHealthChecker",
 				ComponentHealthChecker.class);
 		System.out.println(componentHealthChecker);
+		//appContext.close();
+		appContext.registerShutdownHook();
+	}
+	
+	@PostConstruct
+	public void thisMethodIsCalledAfterBeanIsCreated(){
+		System.out.println("Bean Created : " + this);
+	}
+	
+	@PreDestroy
+	public void thisMethodIsCalledBeforeBeanIsDestroyed(){
+		System.out.println("Bean will be Destroyed : " + this);
 	}
 }

@@ -13,4 +13,5 @@
 * Declaring a bean of class org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor & annotating setters with @Required makes it mandatory to set the member variable even for template beans
 * @Resource = Autowire byName or use @Resource(name = "beanId")
 * @Qualifier("useThisQualifiedConnector") can be used to autowire a bean tagged by using the <qualifier value="useThisQualifiedConnector" /> when multiple beans of the type exist & autowiring byType is not feasible
-* <context:component-scan base-package="package containing classes annotated with @Component / @Service / @Repository  / @Controller. A bean with bean name = class name starting with lower case  will automatically be created for each such class" />  
+* &lt;context:component-scan base-package="package containing classes annotated with @Component / @Service / @Repository  / @Controller. A bean with bean name = class name starting with lower case  will automatically be created for each such class" /&gt;
+* @PostConstruct & @PreDestroy annotated methods are called after construction & before Destruction of the Bean. Also note AbstractApplicationContext's registerShutdownHook() method   
