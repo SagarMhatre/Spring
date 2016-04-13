@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<bean id="dbConnector" class="in.mhatre.sagar.spring.core.beans.MySQLDBConnector">
+		<property name="connectionString"
+			value="jdbc:mysql://localhost:3306/sakila?profileSQL=true"></property>
+	</bean>
+
+	<bean id="restConnector" class="in.mhatre.sagar.spring.core.beans.RESTConnector">
+		<property name="url" value="http://localhost:8080/app/location"></property>
+	</bean>
+
+	<context:component-scan base-package="in.mhatre.sagar.spring.core.beans" />
+	<!-- package containing classes annotated with @Component / @Service / @Repository 
+		/ @Controller. A bean with bean name = class name starting with lower case 
+		will automatically be created for each such class -->
+
+</beans>

@@ -10,6 +10,7 @@
 		<config>src/main/resources/servers-spring.xml</config>
 		<config>src/main/resources/resource.xml</config>
 		<config>src/main/resources/qualifier.xml</config>
+		<config>src/main/resources/component.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>java:in.mhatre.sagar.spring.core.Application</config>
