@@ -24,5 +24,7 @@
 
 	<bean id="resourcedHealthChecker" class="in.mhatre.sagar.spring.core.beans.ResourcedHealthChecker"/>
 	
+	<context:annotation-config/>
+	
 		
 </beans>
