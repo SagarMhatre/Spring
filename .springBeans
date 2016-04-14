@@ -12,6 +12,7 @@
 		<config>src/main/resources/qualifier.xml</config>
 		<config>src/main/resources/component.xml</config>
 		<config>src/main/resources/event.xml</config>
+		<config>src/main/resources/properties.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>java:in.mhatre.sagar.spring.core.Application</config>
